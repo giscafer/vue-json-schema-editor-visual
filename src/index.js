@@ -4,9 +4,7 @@ import CustomEventPlugin from './event';
 const install = function(Vue) {
   Vue.use(CustomEventPlugin);
 
-  components.forEach((component) => {
-    Vue.component(component.name, component);
-  });
+  Vue.component(JsonSchemaEditor.name, JsonSchemaEditor);
 };
 
 JsonSchemaEditor.install = install;
