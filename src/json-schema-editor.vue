@@ -4,15 +4,20 @@
       v-if="showRaw"
       type="primary"
       size="mini"
-      style="margin-bottom:10px"
+      style="margin-bottom: 10px"
       @click="handleReqBodyRaw"
-    >RAW查看</el-button>
+      >RAW查看</el-button
+    >
     <div class="json-schema-vue-editor">
       <el-row type="flex" align="middle">
         <el-col :span="8" class="col-item name-item col-item-name">
           <el-row type="flex" justify="space-around" align="middle">
             <el-col :span="2" class="down-style-col">
-              <span v-if="schemaData.type === 'object'" class="down-style" @click="handleClickIcon">
+              <span
+                v-if="schemaData.type === 'object'"
+                class="down-style"
+                @click="handleClickIcon"
+              >
                 <i v-if="show" class="el-icon-caret-bottom icon-object"></i>
                 <i v-if="!show" class="el-icon-caret-right icon-object"></i>
               </span>
@@ -20,9 +25,13 @@
             <el-col :span="20">
               <el-input disabled value="root" size="small" />
             </el-col>
-            <el-col :span="2" style="text-align:center">
+            <el-col :span="2" style="text-align: center">
               <el-tooltip placement="top" content="全选">
-                <el-checkbox :checked="checked" :disabled="disabled" @change="changeCheckBox" />
+                <el-checkbox
+                  :checked="checked"
+                  :disabled="disabled"
+                  @change="changeCheckBox"
+                />
               </el-tooltip>
             </el-col>
           </el-row>
@@ -35,13 +44,26 @@
             size="small"
             @change="handleChangeType2($event)"
           >
-            <el-option v-for="item in schemaTypes" :key="item" :value="item" :label="item"></el-option>
+            <el-option
+              v-for="item in schemaTypes"
+              :key="item"
+              :value="item"
+              :label="item"
+            ></el-option>
           </el-select>
         </el-col>
         <el-col v-if="isMock" :span="3" class="col-item col-item-mock">
-          <MockSelect :schema="schemaData" @showEdit="handleShowEdit" @change="handleChangeMock" />
+          <MockSelect
+            :schema="schemaData"
+            @showEdit="handleShowEdit"
+            @change="handleChangeMock"
+          />
         </el-col>
-        <el-col v-if="showTitle" :span="isMock ? 4 : 5" class="col-item col-item-mock">
+        <el-col
+          v-if="showTitle"
+          :span="isMock ? 4 : 5"
+          class="col-item col-item-mock"
+        >
           <el-input
             v-model="schemaData.title"
             placeholder="标题"
@@ -51,7 +73,14 @@
             <i
               slot="append"
               class="el-icon-edit"
-              @click="handleSchemaUpdateEvent({eventType:'show-edit',field:'title',prefix:['properties'],isRoot:true})"
+              @click="
+                handleSchemaUpdateEvent({
+                  eventType: 'show-edit',
+                  field: 'title',
+                  prefix: ['properties'],
+                  isRoot: true,
+                })
+              "
             ></i>
           </el-input>
         </el-col>
@@ -64,12 +93,23 @@
             v-model="schemaData.default"
             placeholder="默认值"
             size="small"
-            :disabled="schemaData.type === 'object' || schemaData.type === 'array' || schemaData.disabled"
+            :disabled="
+              schemaData.type === 'object' ||
+              schemaData.type === 'array' ||
+              schemaData.disabled
+            "
           >
             <i
               slot="append"
               class="el-icon-edit"
-              @click="handleSchemaUpdateEvent({eventType:'show-edit',field:'default',prefix:['properties'],isRoot:true})"
+              @click="
+                handleSchemaUpdateEvent({
+                  eventType: 'show-edit',
+                  field: 'default',
+                  prefix: ['properties'],
+                  isRoot: true,
+                })
+              "
             ></i>
           </el-input>
         </el-col>
@@ -84,14 +124,28 @@
             <i
               slot="append"
               class="el-icon-edit"
-              @click="handleSchemaUpdateEvent({eventType:'show-edit',field:'description',prefix:['properties'],isRoot:true})"
+              @click="
+                handleSchemaUpdateEvent({
+                  eventType: 'show-edit',
+                  field: 'description',
+                  prefix: ['properties'],
+                  isRoot: true,
+                })
+              "
             ></i>
           </el-input>
         </el-col>
         <el-col :span="2" class="col-item col-item-setting">
           <span
             class="adv-set"
-            @click="handleSchemaUpdateEvent({eventType:'setting',schemaType:schemaData.type,prefix:['properties'],isRoot:true})"
+            @click="
+              handleSchemaUpdateEvent({
+                eventType: 'setting',
+                schemaType: schemaData.type,
+                prefix: ['properties'],
+                isRoot: true,
+              })
+            "
           >
             <el-tooltip placement="top" content="高级设置">
               <i class="el-icon-setting"></i>
@@ -100,7 +154,13 @@
 
           <span
             v-if="schemaData.type === 'object'"
-            @click="handleSchemaUpdateEvent({eventType:'add-field',isChild:false,prefix:['properties']})"
+            @click="
+              handleSchemaUpdateEvent({
+                eventType: 'add-field',
+                isChild: false,
+                prefix: ['properties'],
+              })
+            "
           >
             <el-tooltip placement="top" content="添加子节点">
               <i class="el-icon-plus plus"></i>
@@ -117,15 +177,40 @@
         :editor-id="editorId"
       />
       <!-- RAW弹窗 -->
-      <RawDialog v-if="showRaw" :visible.sync="rawDialogVisible" :schema="schemaData" />
+      <RawDialog
+        v-if="showRaw"
+        :visible.sync="rawDialogVisible"
+        :schema="schemaData"
+      />
       <!-- 高级设置弹窗 -->
-      <BasicDialog :visible.sync="basicDialogVisible" :init-data="basicModalData" />
-      <StringDialog :visible.sync="settingDialogVisible.string" :init-data="settingModalData" />
-      <NumberDialog :visible.sync="settingDialogVisible.number" :init-data="settingModalData" />
-      <NumberDialog :visible.sync="settingDialogVisible.integer" :init-data="settingModalData" />
-      <ArrayDialog :visible.sync="settingDialogVisible.array" :init-data="settingModalData" />
-      <BooleanDialog :visible.sync="settingDialogVisible.boolean" :init-data="settingModalData" />
-      <ObjectDialog :visible.sync="settingDialogVisible.object" :init-data="settingModalData" />
+      <BasicDialog
+        :visible.sync="basicDialogVisible"
+        :init-data="basicModalData"
+      />
+      <StringDialog
+        :visible.sync="settingDialogVisible.string"
+        :init-data="settingModalData"
+      />
+      <NumberDialog
+        :visible.sync="settingDialogVisible.number"
+        :init-data="settingModalData"
+      />
+      <NumberDialog
+        :visible.sync="settingDialogVisible.integer"
+        :init-data="settingModalData"
+      />
+      <ArrayDialog
+        :visible.sync="settingDialogVisible.array"
+        :init-data="settingModalData"
+      />
+      <BooleanDialog
+        :visible.sync="settingDialogVisible.boolean"
+        :init-data="settingModalData"
+      />
+      <ObjectDialog
+        :visible.sync="settingDialogVisible.object"
+        :init-data="settingModalData"
+      />
     </div>
   </div>
 </template>
@@ -207,13 +292,13 @@ export default {
   },
   mounted() {
     log(this, this.schemaData)
-    this.$event.on(
+    this.$jsEditorEvent.on(
       `schema-update-${this.editorId}`,
       this.handleSchemaUpdateEvent
     )
   },
   beforeDestroy() {
-    this.$event.off(
+    this.$jsEditorEvent.off(
       `schema-update-${this.editorId}`,
       this.handleSchemaUpdateEvent
     )

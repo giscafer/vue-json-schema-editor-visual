@@ -18,10 +18,10 @@
   </div>
 </template>
 <script>
-import JsonEditor from '../json-editor'
+import SJsonEditor from '../json-editor'
 export default {
   name: 'RawDialog',
-  components: { JsonEditor },
+  components: { SJsonEditor },
   inheritAttrs: false,
   props: {
     schema: { type: Object, default: () => ({}) },

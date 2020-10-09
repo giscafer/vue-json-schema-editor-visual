@@ -1,4 +1,7 @@
-import JsonSchemaEditor from './src/json-schema-editor';
+import Vue from 'vue';
+import JsonSchemaEditor from './json-schema-editor.vue';
+import CustomEventPlugin from './event';
+Vue.use(CustomEventPlugin);
 
 /* istanbul ignore next */
 JsonSchemaEditor.install = function(Vue) {

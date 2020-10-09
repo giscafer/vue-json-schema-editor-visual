@@ -8,14 +8,15 @@
     @close="onClose"
   >
     <el-form ref="elForm" :model="formData" size="small" label-width="100px">
-      <el-form-item label-width="0" prop="notEmpty" style="text-align: center;">
+      <el-form-item label-width="0" prop="notEmpty" style="text-align: center">
         <el-radio-group v-model="formData.notEmpty" size="medium">
           <el-radio
             v-for="(item, index) in notEmptyOptions"
             :key="index"
             :label="item.value"
             :disabled="item.disabled"
-          >{{ item.label }}</el-radio>
+            >{{ item.label }}</el-radio
+          >
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -35,18 +36,18 @@ export default {
   data() {
     return {
       formData: {
-        notEmpty: false
+        notEmpty: false,
       },
       notEmptyOptions: [
         {
           label: '可为空',
-          value: false
+          value: false,
         },
         {
           label: '不允许为空',
-          value: true
-        }
-      ]
+          value: true,
+        },
+      ],
     }
   },
   created() {},
@@ -61,17 +62,17 @@ export default {
       this.$emit('update:visible', false)
     },
     handleConfirm() {
-      this.$refs['elForm'].validate(valid => {
+      this.$refs['elForm'].validate((valid) => {
         if (!valid) return
         const newData = getValidFormVal(this.formData)
-        this.$event.emit(`schema-update-${this.initData.editorId}`, {
+        this.$jsEditorEvent.emit(`schema-update-${this.initData.editorId}`, {
           eventType: 'save-setting',
           ...this.initData, // 之前的参数
-          newData // 设置数据
+          newData, // 设置数据
         })
         this.close()
       })
-    }
-  }
+    },
+  },
 }
 </script>

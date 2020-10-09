@@ -1,10 +1,18 @@
 <template>
   <div>
     <el-row type="flex" align="middle">
-      <el-col :span="8" class="col-item name-item col-item-name" :style="tagPaddingLeftStyle">
+      <el-col
+        :span="8"
+        class="col-item name-item col-item-name"
+        :style="tagPaddingLeftStyle"
+      >
         <el-row type="flex" justify="space-around" align="middle">
           <el-col :span="2" class="down-style-col">
-            <span v-if="value.type === 'object'" class="down-style" @click="handleClickIcon">
+            <span
+              v-if="value.type === 'object'"
+              class="down-style"
+              @click="handleClickIcon"
+            >
               <i v-if="showIcon" class="el-icon-caret-bottom icon-object"></i>
               <i v-if="!showIcon" class="el-icon-caret-right icon-object"></i>
             </span>
@@ -13,16 +21,18 @@
             <input
               size="small"
               class="el-input el-input__inner"
-              :class="{'is-disabled':value.disabled}"
+              :class="{ 'is-disabled': value.disabled }"
               :value="name"
               :disabled="value.disabled"
               @change="handleNameChange"
             />
           </el-col>
-          <el-col :span="2" style="text-align:center">
+          <el-col :span="2" style="text-align: center">
             <el-tooltip placement="top" content="是否必须">
               <el-checkbox
-                :checked="(data.required && data.required.indexOf(name) != -1) || false"
+                :checked="
+                  (data.required && data.required.indexOf(name) != -1) || false
+                "
                 @change="handleEnableRequire"
               ></el-checkbox>
             </el-tooltip>
@@ -38,24 +48,38 @@
           class="type-select-style"
           @change="handleChangeType"
         >
-          <el-option v-for="item in schemaTypes" :key="item" :value="item" :label="item"></el-option>
+          <el-option
+            v-for="item in schemaTypes"
+            :key="item"
+            :value="item"
+            :label="item"
+          ></el-option>
         </el-select>
       </el-col>
 
       <el-col v-if="isMock" :span="3" class="col-item col-item-mock">
         <MockSelect
           :schema="value"
-          @showEdit="handleAction({eventType:'mock-edit'})"
+          @showEdit="handleAction({ eventType: 'mock-edit' })"
           @change="handleChangeMock"
         />
       </el-col>
 
-      <el-col v-if="showTitle" :span="isMock ? 4 : 5" class="col-item col-item-mock">
-        <el-input v-model="value.title" :disabled="value.disabled" size="small" placeholder="标题">
+      <el-col
+        v-if="showTitle"
+        :span="isMock ? 4 : 5"
+        class="col-item col-item-mock"
+      >
+        <el-input
+          v-model="value.title"
+          :disabled="value.disabled"
+          size="small"
+          placeholder="标题"
+        >
           <i
             slot="append"
             class="el-icon-edit"
-            @click="handleAction({eventType:'show-edit',field:'title'})"
+            @click="handleAction({ eventType: 'show-edit', field: 'title' })"
           ></i>
         </el-input>
       </el-col>
@@ -69,12 +93,14 @@
           v-model.trim="value.default"
           placeholder="默认值"
           size="small"
-          :disabled="value.type === 'object' || value.type === 'array' || value.disabled"
+          :disabled="
+            value.type === 'object' || value.type === 'array' || value.disabled
+          "
         >
           <i
             slot="append"
             class="el-icon-edit"
-            @click="handleAction({eventType:'show-edit',field:'default'})"
+            @click="handleAction({ eventType: 'show-edit', field: 'default' })"
           ></i>
         </el-input>
       </el-col>
@@ -89,21 +115,28 @@
           <i
             slot="append"
             class="el-icon-edit"
-            @click="handleAction({eventType:'show-edit',field:'description'})"
+            @click="
+              handleAction({ eventType: 'show-edit', field: 'description' })
+            "
           ></i>
         </el-input>
       </el-col>
 
       <el-col :span="isMock ? 2 : 3" class="col-item col-item-setting">
-        <span class="adv-set" @click="handleAction({eventType:'setting', schemaType: value.type})">
+        <span
+          class="adv-set"
+          @click="
+            handleAction({ eventType: 'setting', schemaType: value.type })
+          "
+        >
           <el-tooltip placement="top" content="高级设置">
             <i class="el-icon-setting"></i>
           </el-tooltip>
         </span>
         <span
           class="delete-item"
-          :class="{'hidden':value.disabled}"
-          @click="handleAction({eventType:'delete-field'})"
+          :class="{ hidden: value.disabled }"
+          @click="handleAction({ eventType: 'delete-field' })"
         >
           <i class="el-icon-close close"></i>
         </span>
@@ -115,7 +148,7 @@
         />
         <span
           v-if="value.type !== 'object'"
-          @click="handleAction({eventType:'add-field',isChild:false})"
+          @click="handleAction({ eventType: 'add-field', isChild: false })"
         >
           <el-tooltip placement="top" content="添加兄弟节点">
             <i class="el-icon-plus plus"></i>
@@ -125,7 +158,7 @@
     </el-row>
     <div class="option-formStyle">
       <!-- {mapping(prefixArray, value, showEdit, showAdv)} -->
-      <template v-if="value.type==='array'">
+      <template v-if="value.type === 'array'">
         <schema-array
           :prefix="prefixArray"
           :data="value"
@@ -135,7 +168,7 @@
           :editor-id="editorId"
         />
       </template>
-      <template v-if="value.type==='object' && showIcon">
+      <template v-if="value.type === 'object' && showIcon">
         <schema-object
           :prefix="nameArray"
           :data="value"
@@ -161,41 +194,41 @@ export default {
     MockSelect,
     DropPlus,
     'schema-array': SchemaArray,
-    'schema-object': SchemaObject
+    'schema-object': SchemaObject,
   },
   props: {
     isMock: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showTitle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showDefaultValue: { type: Boolean, default: false },
     editorId: {
       type: String,
-      default: 'editor_id'
+      default: 'editor_id',
     },
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     prefix: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     data: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       showIcon: true,
       tagPaddingLeftStyle: {},
       schemaTypes: SCHEMA_TYPE,
-      value: this.data.properties[this.name]
+      value: this.data.properties[this.name],
     }
   },
 
@@ -207,12 +240,12 @@ export default {
     prefixArray() {
       return [].concat(this.prefix, this.name)
       // return [].concat(this.prefix, 'items')
-    }
+    },
   },
   beforeMount() {
-    const length = this.prefix.filter(name => name !== 'properties').length
+    const length = this.prefix.filter((name) => name !== 'properties').length
     this.tagPaddingLeftStyle = {
-      paddingLeft: `${20 * (length + 1)}px`
+      paddingLeft: `${20 * (length + 1)}px`,
     }
   },
   methods: {
@@ -225,33 +258,33 @@ export default {
 
     handleAction(options) {
       const { prefix, name } = this
-      this.$event.emit(`schema-update-${this.editorId}`, {
+      this.$jsEditorEvent.emit(`schema-update-${this.editorId}`, {
         eventType: 'add-field',
         prefix,
         name,
-        ...options
+        ...options,
       })
     },
 
     handleNameChange(e) {
       this.handleAction({
         eventType: 'update-field-name',
-        value: e.target.value
+        value: e.target.value,
       })
     },
     handleEnableRequire(e) {
       const { prefix, name } = this
-      this.$event.emit(`schema-update-${this.editorId}`, {
+      this.$jsEditorEvent.emit(`schema-update-${this.editorId}`, {
         eventType: 'toggle-required',
         prefix,
         name,
-        required: e
+        required: e,
       })
     },
     handleChangeMock() {},
     handleChangeType(value) {
       this.handleAction({ eventType: 'schema-type', value })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -1,6 +1,6 @@
 # vue-json-schema-editor-visual
 
-[![](https://img.shields.io/npm/v/giscafer/vue-json-schema-editor-visual.svg?style=flat-square)](https://www.npmjs.com/package/giscafer/vue-json-schema-editor-visual)
+[![](https://img.shields.io/npm/v/vue-json-schema-editor-visual.svg?style=flat-square)](https://www.npmjs.com/package/vue-json-schema-editor-visual)
 
 A json-schema editor of high efficient and easy-to-use, base on Vue.
 

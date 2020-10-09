@@ -9,7 +9,13 @@
       @close="onClose"
     >
       <el-row :gutter="15">
-        <el-form ref="elForm" :model="formData" :rules="rules" size="small" label-width="100px">
+        <el-form
+          ref="elForm"
+          :model="formData"
+          :rules="rules"
+          size="small"
+          label-width="100px"
+        >
           <el-col :span="24">
             <el-form-item label="默认值：" prop="default">
               <el-input
@@ -18,7 +24,7 @@
                 placeholder="请输入默认值"
                 :maxlength="15"
                 clearable
-                :style="{width: '100%'}"
+                :style="{ width: '100%' }"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -26,7 +32,7 @@
             <el-form-item label="最小值：" prop="minLength">
               <el-input-number
                 v-model="formData.minLength"
-                style="width:160px"
+                style="width: 160px"
                 placeholder="请输入"
                 :min="-9007199254740992"
                 :step="1"
@@ -37,7 +43,7 @@
             <el-form-item label="最大值:" prop="maxLength">
               <el-input-number
                 v-model="formData.maxLength"
-                style="width:160px"
+                style="width: 160px"
                 placeholder="请输入"
                 :step="1"
                 :max="9007199254740992"
@@ -47,12 +53,12 @@
           <el-col :span="24">
             <el-row>
               <el-col :span="3">
-                <div style="line-height: 80px;text-align: right;">
+                <div style="line-height: 80px; text-align: right">
                   <label for>枚举</label>
                   <el-checkbox v-model="enableEnum">:</el-checkbox>
                 </div>
               </el-col>
-              <el-col :span="21" style="padding-left: 18px;">
+              <el-col :span="21" style="padding-left: 18px">
                 <el-form-item label-width="0" prop="enum">
                   <el-input
                     v-model="formData.enum"
@@ -60,8 +66,8 @@
                     placeholder="请输入枚举，一行一个"
                     :maxlength="120"
                     :disabled="!enableEnum"
-                    :autosize="{minRows: 4, maxRows: 4}"
-                    :style="{width: '100%'}"
+                    :autosize="{ minRows: 4, maxRows: 4 }"
+                    :style="{ width: '100%' }"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -74,8 +80,8 @@
                 type="textarea"
                 placeholder="请输入枚举描述"
                 :maxlength="100"
-                :autosize="{minRows: 4, maxRows: 4}"
-                :style="{width: '100%'}"
+                :autosize="{ minRows: 4, maxRows: 4 }"
+                :style="{ width: '100%' }"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -103,7 +109,7 @@ export default {
         minLength: undefined,
         maxLength: undefined,
         enum: undefined,
-        enumDesc: undefined
+        enumDesc: undefined,
       },
       rules: {
         default: [],
@@ -111,8 +117,8 @@ export default {
         maxLength: [],
         innerScope: [],
         enum: [],
-        enumDesc: []
-      }
+        enumDesc: [],
+      },
     }
   },
   methods: {
@@ -141,7 +147,7 @@ export default {
       this.$emit('update:visible', false)
     },
     handleConfirm() {
-      this.$refs['elForm'].validate(valid => {
+      this.$refs['elForm'].validate((valid) => {
         if (!valid) return
         const newData = getValidFormVal(this.formData)
         if (newData.enum) {
@@ -150,14 +156,14 @@ export default {
         if (newData.default) {
           newData.default = Number(newData.default)
         }
-        this.$event.emit(`schema-update-${this.initData.editorId}`, {
+        this.$jsEditorEvent.emit(`schema-update-${this.initData.editorId}`, {
           eventType: 'save-setting',
           ...this.initData, // 之前的参数
-          newData // 设置数据
+          newData, // 设置数据
         })
         this.close()
       })
-    }
-  }
+    },
+  },
 }
 </script>

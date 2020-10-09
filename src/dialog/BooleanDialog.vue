@@ -9,7 +9,12 @@
   >
     <el-form ref="elForm" :model="formData" size="small" label-width="100px">
       <el-form-item label="默认值：" prop="default">
-        <el-select v-model="formData.default" placeholder="请下拉选择" clearable :style="{width: '60%'}">
+        <el-select
+          v-model="formData.default"
+          placeholder="请下拉选择"
+          clearable
+          :style="{ width: '60%' }"
+        >
           <el-option
             v-for="(item, index) in defaultOptions"
             :key="index"
@@ -36,18 +41,18 @@ export default {
   data() {
     return {
       formData: {
-        default: undefined
+        default: undefined,
       },
       defaultOptions: [
         {
           label: 'true',
-          value: true
+          value: true,
         },
         {
           label: 'false',
-          value: false
-        }
-      ]
+          value: false,
+        },
+      ],
     }
   },
   created() {},
@@ -62,17 +67,17 @@ export default {
       this.$emit('update:visible', false)
     },
     handleConfirm() {
-      this.$refs['elForm'].validate(valid => {
+      this.$refs['elForm'].validate((valid) => {
         if (!valid) return
         const newData = getValidFormVal(this.formData)
-        this.$event.emit(`schema-update-${this.initData.editorId}`, {
+        this.$jsEditorEvent.emit(`schema-update-${this.initData.editorId}`, {
           eventType: 'save-setting',
           ...this.initData, // 之前的参数
-          newData // 设置数据
+          newData, // 设置数据
         })
         this.close()
       })
-    }
-  }
+    },
+  },
 }
 </script>

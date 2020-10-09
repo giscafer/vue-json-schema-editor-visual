@@ -6,7 +6,7 @@
         type="textarea"
         :rows="3"
         placeholder="请输入内容"
-        style="margin-bottom:15px"
+        style="margin-bottom: 15px"
       ></el-input>
       <span slot="footer" class="dialog-footer">
         <el-button @click="close">取 消</el-button>
@@ -25,14 +25,14 @@ export default {
       type: Object,
       default: () => ({
         title: '提示',
-        value: ''
-      })
-    }
+        value: '',
+      }),
+    },
   },
   data() {
     return {
       dialogVisible: false,
-      data: ''
+      data: '',
     }
   },
 
@@ -41,8 +41,8 @@ export default {
       handler() {
         this.data = this.initData.value
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   created() {},
   methods: {
@@ -51,13 +51,13 @@ export default {
     },
     handleOk() {
       this.initData.value = this.data
-      this.$event.emit(`schema-update-${this.initData.editorId}`, {
+      this.$jsEditorEvent.emit(`schema-update-${this.initData.editorId}`, {
         eventType: 'save-showedit',
-        ...this.initData
+        ...this.initData,
       })
       this.close()
-    }
-  }
+    },
+  },
 }
 </script>
 

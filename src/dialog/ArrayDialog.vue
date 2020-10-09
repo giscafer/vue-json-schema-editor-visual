@@ -11,12 +11,22 @@
       <el-form ref="elForm" :model="formData" size="small" label-width="100px">
         <el-col :span="12">
           <el-form-item label="最小元素个数" prop="minItems">
-            <el-input-number v-model="formData.minItems" placeholder="请输入" :min="0" :step="1"></el-input-number>
+            <el-input-number
+              v-model="formData.minItems"
+              placeholder="请输入"
+              :min="0"
+              :step="1"
+            ></el-input-number>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="最大元素个数" prop="maxItems">
-            <el-input-number v-model="formData.maxItems" placeholder="请输入" :max="100000" :step="1"></el-input-number>
+            <el-input-number
+              v-model="formData.maxItems"
+              placeholder="请输入"
+              :max="100000"
+              :step="1"
+            ></el-input-number>
           </el-form-item>
         </el-col>
       </el-form>
@@ -39,8 +49,8 @@ export default {
     return {
       formData: {
         minItems: undefined,
-        maxItems: undefined
-      }
+        maxItems: undefined,
+      },
     }
   },
   created() {},
@@ -56,17 +66,17 @@ export default {
       this.$emit('update:visible', false)
     },
     handleConfirm() {
-      this.$refs['elForm'].validate(valid => {
+      this.$refs['elForm'].validate((valid) => {
         if (!valid) return
         const newData = getValidFormVal(this.formData)
-        this.$event.emit(`schema-update-${this.initData.editorId}`, {
+        this.$jsEditorEvent.emit(`schema-update-${this.initData.editorId}`, {
           eventType: 'save-setting',
           ...this.initData, // 之前的参数
-          newData // 设置数据
+          newData, // 设置数据
         })
         this.close()
       })
-    }
-  }
+    },
+  },
 }
 </script>

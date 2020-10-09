@@ -1,6 +1,6 @@
 {
   "name": "vue-json-schema-editor-visual",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "A json-schema editor of high efficient and easy-to-use, base on Vue.",
   "keywords": [
     "json-schema"
@@ -8,16 +8,16 @@
   "author": "giscafer <giscafer@outlook.com>",
   "homepage": "https://github.com/giscafer/vue-json-schema-editor-visual",
   "license": "MIT",
-  "main": "lib/json-schema-editor.js",
-  "unpkg": "lib/json-schema-editor.js",
+  "main": "dist/json-schema-editor.min.js",
+  "unpkg": "dist/json-schema-editor.min.js",
   "directories": {
     "dist": "dist",
-    "lib": "lib",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
     "dist",
-    "lib"
+    "src"
   ],
   "publishConfig": {
     "access": "public",
@@ -29,25 +29,25 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean &&  webpack --config build/webpack.component.js",
+    "build": "npm run clean && webpack --config build/webpack.common.js --optimize-max-chunks 1",
     "lint": "eslint  lib/**/* build/**/* --quiet",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "element-ui": "^2.13.2",
+    "codemirror": "^5.58.1",
+    "element-ui": "2.13.2",
     "json-schema-faker": "^0.5.0-rcv.24",
     "lodash": "^4.17.19",
     "mockjs": "^1.1.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "json-templater": "^1.2.0",
+    "jsonlint": "^1.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
-    "codemirror": "^5.58.1",
     "css-loader": "^4.1.0",
-    "json-templater": "^1.2.0",
-    "jsonlint": "^1.6.3",
     "node-sass": "^4.14.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "sass-loader": "^9.0.2",
