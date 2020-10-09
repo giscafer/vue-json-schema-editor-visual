@@ -6,6 +6,8 @@ A json-schema editor of high efficient and easy-to-use, base on Vue.
 
 一个高效易用的基于 Vue 的 json-schema 编辑器。 模仿 Yapi React 版本 [json-schema-editor-visual](https://github.com/YMFE/json-schema-editor-visual) 实现
 
+![](./json-schema-editor.png)
+
 ## Usage
 
 ```js
@@ -14,9 +16,7 @@ import JsonSchemaEditor from 'vue-json-schema-editor-visual';
 Vue.use(JsonSchemaEditor);
 ```
 
-详细用法见文档：http://blog.giscafer.com/sinokit/#/./components/jsonschema-editor
-
-[CodeSandbox Demo](https://codesandbox.io/s/practical-pond-jpteu?file=/src/App.vue)
+在线 Demo [CodeSandbox Demo](https://codesandbox.io/s/practical-pond-jpteu?file=/src/App.vue)
 
 ## API
 
