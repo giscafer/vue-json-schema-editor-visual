@@ -8,7 +8,7 @@ const config = require('./config');
 module.exports = {
   mode: 'production',
   entry: {
-    app: ['./src/index.js']
+    app: ['./index.js'],
   },
   output: {
     path: path.resolve(process.cwd(), './lib'),
@@ -17,34 +17,33 @@ module.exports = {
     chunkFilename: '[id].js',
     libraryTarget: 'umd',
     libraryExport: 'default',
-    library: 'SINOKITCOMPONENTS',
-    umdNamedDefine: true
+    library: 'JSONSCHEMAEDITOR',
+    umdNamedDefine: true,
     // globalObject: "typeof self !== 'undefined' ? self : this"
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    alias: config.alias
+    alias: config.alias,
   },
   externals: {
     vue: config.vue,
-    '@sinokit/utils': '@sinokit/utils'
   },
   optimization: {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
           output: {
-            comments: false
-          }
-        }
-      })
-    ]
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
   performance: {
-    hints: false
+    hints: false,
   },
   stats: {
-    children: false
+    children: false,
   },
   module: {
     rules: [
@@ -52,36 +51,36 @@ module.exports = {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
         exclude: config.jsexclude,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           compilerOptions: {
-            preserveWhitespace: false
-          }
-        }
+            preserveWhitespace: false,
+          },
+        },
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader' // 将 JS 字符串生成为 style 节点
+            loader: 'style-loader', // 将 JS 字符串生成为 style 节点
           },
           {
             loader: 'css-loader',
             options: {
-              import: true
-            }
-          }
-        ]
+              import: true,
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      }
-    ]
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
-  plugins: [new ProgressBarPlugin(), new VueLoaderPlugin()]
+  plugins: [new ProgressBarPlugin(), new VueLoaderPlugin()],
 };

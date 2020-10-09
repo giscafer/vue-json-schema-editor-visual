@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import JsonEditor from '@sinokit/components/src/json-editor'
+import JsonEditor from '../json-editor'
 export default {
   name: 'RawDialog',
   components: { JsonEditor },

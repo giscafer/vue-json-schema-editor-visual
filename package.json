@@ -1,15 +1,15 @@
 {
   "name": "vue-json-schema-editor-visual",
   "version": "0.1.0",
-  "description": "组件",
+  "description": "A json-schema editor of high efficient and easy-to-use, base on Vue.",
   "keywords": [
-    "components"
+    "json-schema"
   ],
   "author": "giscafer <giscafer@outlook.com>",
   "homepage": "https://github.com/giscafer/vue-json-schema-editor-visual",
   "license": "MIT",
-  "main": "lib/sinokit-components.common.js",
-  "unpkg": "lib/sinokit-components.common.js",
+  "main": "lib/json-schema-editor.js",
+  "unpkg": "lib/json-schema-editor.js",
   "directories": {
     "dist": "dist",
     "lib": "lib",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build:file && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js",
+    "build": "npm run clean &&  webpack --config build/webpack.component.js",
     "lint": "eslint  lib/**/* build/**/* --quiet",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
@@ -41,18 +41,23 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
     "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
+    "codemirror": "^5.58.1",
     "css-loader": "^4.1.0",
     "json-templater": "^1.2.0",
+    "jsonlint": "^1.6.3",
     "node-sass": "^4.14.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "sass-loader": "^9.0.2",
+    "script-loader": "^0.7.2",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^3.0.8",
     "uppercamelcase": "^3.0.0",
     "url-loader": "^4.1.0",
     "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^2.5.0"
