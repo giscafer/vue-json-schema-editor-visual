@@ -1,6 +1,6 @@
 # vue-json-schema-editor-visual
 
-![](https://img.shields.io/npm/v/giscafer/vue-json-schema-editor-visual.svg?style=flat-square)](https://www.npmjs.com/package/giscafer/vue-json-schema-editor-visual)
+[![](https://img.shields.io/npm/v/giscafer/vue-json-schema-editor-visual.svg?style=flat-square)](https://www.npmjs.com/package/giscafer/vue-json-schema-editor-visual)
 
 A json-schema editor of high efficient and easy-to-use, base on Vue.
 
@@ -15,6 +15,8 @@ Vue.use(JsonSchemaEditor);
 ```
 
 详细用法见文档：http://blog.giscafer.com/sinokit/#/./components/jsonschema-editor
+
+[CodeSandbox Demo](https://codesandbox.io/s/practical-pond-jpteu?file=/src/App.vue)
 
 ## API
 

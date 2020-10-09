@@ -9,7 +9,7 @@
       @close="onClose"
     >
       <div class="sourcecode">
-        <json-editor :value="schema"></json-editor>
+        <s-json-editor :value="schema"></s-json-editor>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="close">关 闭</el-button>
