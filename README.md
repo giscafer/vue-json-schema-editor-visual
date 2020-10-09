@@ -16,7 +16,10 @@ import JsonSchemaEditor from 'vue-json-schema-editor-visual';
 Vue.use(JsonSchemaEditor);
 ```
 
-在线 Demo [CodeSandbox Demo](https://codesandbox.io/s/practical-pond-jpteu?file=/src/App.vue)
+在线 Demo
+
+- [Sinokit json-schema-editor](http://blog.giscafer.com/sinokit/#/./components/jsonschema-editor)
+- [CodeSandbox Demo](https://codesandbox.io/s/practical-pond-jpteu?file=/src/App.vue)
 
 ## API
 
