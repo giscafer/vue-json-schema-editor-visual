@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/npm/v/vue-json-schema-editor-visual.svg?style=flat-square)](https://www.npmjs.com/package/vue-json-schema-editor-visual)
 
-A json-schema editor of high efficient and easy-to-use, base on Vue.
+A json-schema editor of high efficient and easy-to-use, base on Vue & Element UI.
 
 一个高效易用的基于 Vue + Element UI 的 json-schema 编辑器。 模仿 Yapi React 版本 [json-schema-editor-visual](https://github.com/YMFE/json-schema-editor-visual) 实现
 
