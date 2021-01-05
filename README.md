@@ -38,10 +38,15 @@ Vue.use(JsonSchemaEditor);
 | :-------------: | --------------------------- | :-------------------: |
 | `schema-change` | schema 发生变化时的回调函数 | 新的 json schema 对象 |
 
-
 ## Related
 
-vue + ant-design-vue 版本的推荐 [json-schema-editor-vue](https://github.com/zyqwst/json-schema-editor-vue)
+- [json-schema-editor-vue](https://github.com/zyqwst/json-schema-editor-vue) vue + ant-design-vue
+
+其他 json editor
+
+- [jsoneditor](https://github.com/josdejong/jsoneditor)
+- [json-editor/json-editor](https://github.com/json-editor/json-editor)
+- [jinkin1995/vue-json-edit](https://github.com/jinkin1995/vue-json-edit)
 
 ## License
 
