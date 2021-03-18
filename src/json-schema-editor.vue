@@ -410,7 +410,7 @@ export default {
       const ranName = 'field_' + uuid()
       const propertiesData = get(this.schemaData, parentPrefix)
       newPropertiesData = Object.assign({}, propertiesData)
-      newPropertiesData[ranName] = defaultSchema.string
+      newPropertiesData[ranName] = cloneDeep(defaultSchema.string)
       const cloneSchema = cloneDeep(this.schemaData)
       set(cloneSchema, parentPrefix, newPropertiesData)
 
