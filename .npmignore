@@ -4,7 +4,7 @@ node_modules
 # local env files
 .env.local
 .env.*.local
-
+docs/*
 # Log files
 lerna-debug.log*
 npm-debug.log*
